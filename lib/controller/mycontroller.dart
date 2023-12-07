@@ -14,9 +14,12 @@ class MyController with ChangeNotifier {
     ImageConstant.dice5,
     ImageConstant.dice6
   ];
-  generate() {
+  generate() async {
     isLoading = true;
-    Future.delayed(Duration(seconds: 3)).then((value) {});
+    notifyListeners();
+    await Future.delayed(Duration(seconds: 3)).then((value) {
+      isLoading = false;
+    });
     //we can also use ; after duration if there's nothing to perform
     randomNumber = Random().nextInt(6);
     //we use random for generating random images(in this case)within the list

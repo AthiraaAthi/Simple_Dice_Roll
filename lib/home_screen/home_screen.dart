@@ -1,5 +1,6 @@
 import 'package:dice_task/controller/mycontroller.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,18 +12,22 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 32, 83, 34),
       body: Center(
-        child: InkWell(
-          onTap: () {
-            Provider.of<MyController>(context, listen: false).generate();
-          },
-          child: Container(
-            height: 150,
-            width: 150,
-            child: Image.asset(
-                diceprovider.diceImages[diceprovider.randomNumber],
-                fit: BoxFit.cover),
-          ),
-        ),
+        child: diceprovider.isLoading == true
+            ? Lottie.asset("assets/images/Animation - 1701917714185.json")
+            //it won't show unless we add notifyListeners() after the isLoading
+            //we can also add lottie animations instead of circularProgressIndicator
+            : InkWell(
+                onTap: () {
+                  Provider.of<MyController>(context, listen: false).generate();
+                },
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  child: Image.asset(
+                      diceprovider.diceImages[diceprovider.randomNumber],
+                      fit: BoxFit.cover),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
