@@ -13,7 +13,9 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 32, 83, 34),
       body: Center(
         child: diceprovider.isLoading == true
-            ? Lottie.asset("assets/images/Animation - 1701917714185.json")
+            ? Lottie.asset(
+                "assets/images/Animation - 1701918360505.json",
+              )
             //it won't show unless we add notifyListeners() after the isLoading
             //we can also add lottie animations instead of circularProgressIndicator
             : InkWell(
